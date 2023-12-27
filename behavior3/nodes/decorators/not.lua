@@ -13,7 +13,7 @@ local M = {
 }
 
 function M.run(node, env)
-    local yield = node:resume(env)
+    node:resume(env)
     local r
     if node:resume(env) then
         r = env.last_ret

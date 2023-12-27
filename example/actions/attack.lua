@@ -13,7 +13,7 @@ function M.run(node, env, enemy)
     if not enemy then
         return bret.FAIL
     end
-    local owner = env.owner
+    -- local owner = env.owner
 
     print "Do Attack"
     enemy.hp = enemy.hp - 100

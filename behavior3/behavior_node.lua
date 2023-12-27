@@ -1,5 +1,4 @@
 local bret = require 'behavior3.behavior_ret'
-local process = require 'behavior3.sample_process'
 
 local sformat = string.format
 local table = table

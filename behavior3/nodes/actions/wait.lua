@@ -12,9 +12,6 @@ local M = {
     }
 }
 
-local abs = math.abs
-local SPEED = 50
-
 function M.run(node, env)
     local args = node.args
     local t = node:resume(env)

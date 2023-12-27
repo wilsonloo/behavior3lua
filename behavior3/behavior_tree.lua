@@ -1,6 +1,5 @@
 local behavior_node = require 'behavior3.behavior_node'
 local behavior_ret = require 'behavior3.behavior_ret'
-local json = require 'json'
 
 local meta = {
     __newindex = function(_, k)
