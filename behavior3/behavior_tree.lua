@@ -30,6 +30,10 @@ end
 
 function mt:run(env)
     -- print(string.format('===== tree:%s, tick:%s, stack:%d =====', self.name, self.tick, #env.stack))
+    if env.owner.ai_logger then
+        env.owner.ai_logger:new_frame()
+    end
+    
     if #env.stack > 0 then
         local last_node = env.stack[#env.stack]
         while last_node do

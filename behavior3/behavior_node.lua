@@ -19,6 +19,7 @@ function mt:init(node_data, tree)
     self.id = node_data.id
     self.info = sformat('node %s.%s %s', tree.name, self.id, self.name)
 
+    self.fail_msg = nil
     self.data = node_data
     self.args = self.data.args or {}
     self.children = {}
@@ -28,8 +29,13 @@ function mt:init(node_data, tree)
     end
 end
 
+function mt:set_fail_msg(msg)
+    self.fail_msg = msg
+end
+
 function mt:run(env)
     --print("start", self.name, self.node_id)
+    self.fail_msg = nil
     if env:get_inner_var(self, "YIELD") == nil then
         env:push_stack(self)
     end
@@ -46,6 +52,11 @@ function mt:run(env)
     end
     local ret = vars[1]
     assert(ret, self.info)
+
+    if env.owner.ai_logger then
+        env.owner.ai_logger:log(self.id, bret.Idx[ret])
+    end
+
     if ret ~= bret.RUNNING then
         env:set_inner_var(self, "YIELD", nil)
         env:pop_stack()
